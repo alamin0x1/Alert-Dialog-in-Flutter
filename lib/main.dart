@@ -12,11 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true
-      ),
+      title: 'InputText',
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       home: const MyHomePage(title: 'Flutter Demo'),
     );
   }
@@ -38,48 +35,90 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-          child: TextButton(
-        child: Text("Click me"),
-        onPressed: () => showDialog(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-                  title: const Text("Subscipt Channel"),
-                  content: const Text("Are you wnat to subscipt this channel"),
-                  actions: [
-                    TextButton(
-                        onPressed: () => Navigator.pop(context, "Cancle"),
-                        child:const Text("Cancel")),
-
-                    TextButton(
-                        onPressed: () => Navigator.pop(context, "Ok"),
-                        child: const Text("Ok")),
-                  ],
-              backgroundColor: Colors.yellow,
-                )),
-      )),
+      body: Container(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), hintText: "Enter your Name"),
+              keyboardType: TextInputType.name,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                  border: UnderlineInputBorder(), hintText: "Enter your Phone"),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                  border: InputBorder.none, hintText: "Enter your Email"),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Enter your Passwprd"),
+              keyboardType: TextInputType.text,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), hintText: "Enter your Email"),
+              keyboardType: TextInputType.emailAddress,
+            ),
+          ],
+        ),
+      ),
     );
-    // body: Container(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //   children: const [
-    //     Text(
-    //       "Welcome to our Flutter First",
-    //       style: TextStyle(
-    //           color: Colors.blue,
-    //           fontSize: 16,
-    //           fontWeight: FontWeight.bold,
-    //           wordSpacing: 0),
-    //     ),
-    //     Text(
-    //       "Welcome to our Flutter First",
-    //       style: TextStyle(
-    //           color: Colors.blue,
-    //           fontSize: 16,
-    //           fontWeight: FontWeight.bold,
-    //           wordSpacing: 0),
-    //     ),
-    //   ],
-    // )));
   }
 }
+
+//     child: TextButton(
+//   child: Text("Click me"),
+//   onPressed: () => showDialog(
+//       context: context,
+//       builder: (BuildContext context) => AlertDialog(
+//             title: const Text("Subscipt Channel"),
+//             content: const Text("Are you wnat to subscipt this channel"),
+//             actions: [
+//               TextButton(
+//                   onPressed: () => Navigator.pop(context, "Cancle"),
+//                   child:const Text("Cancel")),
+//
+//               TextButton(
+//                   onPressed: () => Navigator.pop(context, "Ok"),
+//                   child: const Text("Ok")),
+//             ],
+//         backgroundColor: Colors.yellow,
+//           )),
+// )),
+// );
+// body: Container(
+//     child: Column(
+//       mainAxisAlignment: MainAxisAlignment.spaceAround,
+//   children: const [
+//     Text(
+//       "Welcome to our Flutter First",
+//       style: TextStyle(
+//           color: Colors.blue,
+//           fontSize: 16,
+//           fontWeight: FontWeight.bold,
+//           wordSpacing: 0),
+//     ),
+//     Text(
+//       "Welcome to our Flutter First",
+//       style: TextStyle(
+//           color: Colors.blue,
+//           fontSize: 16,
+//           fontWeight: FontWeight.bold,
+//           wordSpacing: 0),
+//     ),
+//   ],
+// )));
+//   }
+// }
