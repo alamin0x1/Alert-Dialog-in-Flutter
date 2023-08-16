@@ -29,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,40 +41,72 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: "Enter your Name"),
-              keyboardType: TextInputType.name,
+            Form(
+              key: formKey,
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: "Enter your name."),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your name";
+                  }
+                  return null;
+
+                },
+              ),
+
+
             ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                  border: UnderlineInputBorder(), hintText: "Enter your Phone"),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                  border: InputBorder.none, hintText: "Enter your Email"),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your Passwprd"),
-              keyboardType: TextInputType.text,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: "Enter your Email"),
-              keyboardType: TextInputType.emailAddress,
-            ),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(
+                    const SnackBar(content: Text("Submit Data"))
+                  );
+                }
+              },
+              child: Text("Submit"),
+            )
           ],
         ),
+
+        // child: Column(
+        //   children: [
+        //     TextField(
+        //       decoration: InputDecoration(
+        //           border: OutlineInputBorder(), hintText: "Enter your Name"),
+        //       keyboardType: TextInputType.name,
+        //     ),
+        //     SizedBox(
+        //       height: 20,
+        //     ),
+        //     TextFormField(
+        //       decoration: InputDecoration(
+        //           border: UnderlineInputBorder(), hintText: "Enter your Phone"),
+        //       keyboardType: TextInputType.number,
+        //     ),
+        //     SizedBox(
+        //       height: 20,
+        //     ),
+        //     TextFormField(
+        //       decoration: InputDecoration(
+        //           border: InputBorder.none, hintText: "Enter your Email"),
+        //       keyboardType: TextInputType.emailAddress,
+        //     ),
+        //     TextField(
+        //       decoration: InputDecoration(
+        //           border: OutlineInputBorder(),
+        //           hintText: "Enter your Passwprd"),
+        //       keyboardType: TextInputType.text,
+        //     ),
+        //     TextField(
+        //       decoration: InputDecoration(
+        //           border: OutlineInputBorder(), hintText: "Enter your Email"),
+        //       keyboardType: TextInputType.emailAddress,
+        //     ),
+        //   ],
+        // ),
       ),
     );
   }
